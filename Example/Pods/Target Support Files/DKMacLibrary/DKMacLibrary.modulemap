@@ -1,0 +1,6 @@
+framework module DKMacLibrary {
+  umbrella header "DKMacLibrary-umbrella.h"
+
+  export *
+  module * { export * }
+}
