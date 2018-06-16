@@ -28,9 +28,9 @@
 
 /* Begin PBXFileReference section */
 		21BAE9892043A17478626CD4 /* Pods-DKMacLibrary_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DKMacLibrary_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DKMacLibrary_Tests/Pods-DKMacLibrary_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		3180B24B422A4D66466673E9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		5D20DC2344F14D0105899928 /* DKMacLibrary.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = DKMacLibrary.podspec; path = ../DKMacLibrary.podspec; sourceTree = "<group>"; };
-		70526BE044338CD77C38CF7D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		3180B24B422A4D66466673E9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		5D20DC2344F14D0105899928 /* DKMacLibrary.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DKMacLibrary.podspec; path = ../DKMacLibrary.podspec; sourceTree = "<group>"; };
+		70526BE044338CD77C38CF7D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9B4F4FDDE344F5A11D0AEAE8 /* Pods-DKMacLibrary_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DKMacLibrary_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DKMacLibrary_Tests/Pods-DKMacLibrary_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A902A138CB591BD4B80CE392 /* Pods_DKMacLibrary_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DKMacLibrary_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33BCC3992D78F1D5075A7A4 /* Pods_DKMacLibrary_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DKMacLibrary_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -493,6 +493,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DKMacLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.DKMacLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -509,6 +510,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DKMacLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.DKMacLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -520,7 +522,6 @@
 			baseConfigurationReference = 21BAE9892043A17478626CD4 /* Pods-DKMacLibrary_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -528,7 +529,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.DKMacLibrary-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DKMacLibrary_Example.app/Contents/MacOS/DKMacLibrary_Example";
 			};
 			name = Debug;
 		};
@@ -537,7 +538,6 @@
 			baseConfigurationReference = 9B4F4FDDE344F5A11D0AEAE8 /* Pods-DKMacLibrary_Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -545,7 +545,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.DKMacLibrary-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DKMacLibrary_Example.app/Contents/MacOS/DKMacLibrary_Example";
 			};
 			name = Release;
 		};
