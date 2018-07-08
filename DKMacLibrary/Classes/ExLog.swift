@@ -11,7 +11,7 @@ import Foundation
 open class ExLog{
     
     // ファイルにログを出力するかどうか
-    private static var ShouldFileOutput = false
+    private static var ShouldFileOutput = true
     #if DEBUG
     private static let Debug = true
     #else
@@ -68,7 +68,7 @@ open class ExLog{
     open static func emptyLine(_ lineNums:Int = 1){
         if Debug{
             var msg = ""
-            for _ in 0..<lineNums{
+            for _ in 1..<lineNums{
                 msg = msg + "\n"
             }
             output(msg)
@@ -94,16 +94,15 @@ open class ExLog{
                     format: ExLogFormat = .Normal)
     {
         if Debug{
-            // 日時フォーマット
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-            // 日時・クラス名・メソッド名を出力
             
-            let date = dateFormatter.string(from: Date())
             let objString = object ?? "nil"
             let classDetail = URL(string: String(classFile))?.lastPathComponent  ?? classFile
-            let formatMsg = format.string(emoji: type.getEmoji(), date: date, msg: objString, classDetail: classDetail, lineNumber: lineNumber)
+            let formatMsg = format.string(emoji: type.getEmoji(),
+                                          date: Date(),
+                                          msg: objString,
+                                          functionName: functionName,
+                                          classDetail: classDetail,
+                                          lineNumber: lineNumber)
             output(formatMsg)
         }
     }
@@ -181,29 +180,41 @@ extension ExLog{
         history = msg
     }
     
-    private static func outputToFile(_ msg:String){
-        // To Download this file
-        // iOS: you have to add "Application supports iTunes file sharing=true" flag to info.plist/
-        // MacOS: check Document folder
+    open static func createOrGetFolderForLog() -> URL?{
         let fm = FileManager.default
-        guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            print("dir is nil")
-            return
+        guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else{
+            print("documentDirectory is nil")
+            return nil
         }
         
         let folderUrl = dir.appendingPathComponent(AppName)
         
-        let fileUrl = folderUrl.appendingPathComponent(FileName)
-        
         let path = folderUrl.path
         if !fm.fileExists(atPath: path){
+            print("Not found directory and try to create this dir(\(path))")
             do {
                 try fm.createDirectory( atPath: path, withIntermediateDirectories: true, attributes: nil)
+                print("Created!")
             } catch {
                 //エラー処理
-                print("Fail to create folder: \(fileUrl)")
-                return
+                print("Fail to create folder: \(path)")
             }
+        }
+        
+        return folderUrl
+    }
+    
+    open static func getLogFileForLog() -> URL?{
+        return createOrGetFolderForLog()?.appendingPathComponent(FileName)
+    }
+    
+    private static func outputToFile(_ msg:String){
+        // To Download this file
+        // iOS: you have to add "Application supports iTunes file sharing=true" flag to info.plist/
+        // MacOS: check Document folder
+        guard let fileUrl = getLogFileForLog() else{
+            print("folderUrl is nil")
+            return
         }
         
         guard let output = OutputStream(url: fileUrl, append: true) else{
@@ -257,15 +268,23 @@ public enum ExLogFormat{
     case Short
     case Raw
     
-    func string(emoji:String, date:String, msg:Any, classDetail:String, lineNumber:Int) -> String{
+    func string(emoji:String, date:Date, msg:Any, functionName:String, classDetail:String, lineNumber:Int) -> String{
+        
+        // 日時フォーマット
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
         let threadName = Thread.isMainThread ? "Main" : "Sub "
         
         switch self{
         case .Normal:
-            return "[\(threadName)][\(emoji)][\(date)]:\(msg) [\(classDetail)(\(lineNumber))]"
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            let dateStr = dateFormatter.string(from: Date())
+            return "[\(threadName)][\(emoji)][\(dateStr)]:\(msg) [\(functionName)/\(classDetail)(\(lineNumber))]"
         case .Short:
-            return "[\(threadName)][\(emoji)][\(date)]:\(msg) [\(classDetail)(\(lineNumber))]"
+            dateFormatter.dateFormat = "HH:mm:ss"
+            let dateStr = dateFormatter.string(from: Date())
+            return "[\(threadName)][\(emoji)][\(dateStr)]:\(msg) [\(classDetail)(\(lineNumber))]"
         case .Raw:
             return "\(msg)"
         }

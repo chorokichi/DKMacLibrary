@@ -129,6 +129,10 @@
 		FA03B23C20D4F04F00BB5115 /* DKUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03B23420D4F04E00BB5115 /* DKUtil.swift */; };
 		FA03B23D20D4F04F00BB5115 /* ExLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03B23520D4F04F00BB5115 /* ExLog.swift */; };
 		FA03B23E20D4F04F00BB5115 /* DKCalendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03B23620D4F04F00BB5115 /* DKCalendars.swift */; };
+		FA64C75E20E74C39001083C0 /* DKRecordsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C75B20E74C37001083C0 /* DKRecordsUtil.swift */; };
+		FA64C75F20E74C39001083C0 /* DKCoreDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C75C20E74C38001083C0 /* DKCoreDataSet.swift */; };
+		FA64C76020E74C39001083C0 /* DKRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C75D20E74C38001083C0 /* DKRecords.swift */; };
+		FA64C76320F24475001083C0 /* DKResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C76220F24474001083C0 /* DKResult.swift */; };
 		FB433A84B0A557CD5E5948A8B6705024 /* DSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2294B6CCB2D8D93AE1F605AAA6A03240 /* DSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC40FF856C5D535BD05049E7D8E6AAA9 /* XCTestSuite+QuickTestSuiteBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9A924C203A11767BBF4D9C3737DA5D /* XCTestSuite+QuickTestSuiteBuilder.m */; };
 		FDE0B0BAAE9D2462C6D4C53C130D5A70 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38F7EB4258060BAA361D06EF1B16D9B /* Example.swift */; };
@@ -313,6 +317,10 @@
 		FA03B23420D4F04E00BB5115 /* DKUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKUtil.swift; sourceTree = "<group>"; };
 		FA03B23520D4F04F00BB5115 /* ExLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExLog.swift; sourceTree = "<group>"; };
 		FA03B23620D4F04F00BB5115 /* DKCalendars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKCalendars.swift; sourceTree = "<group>"; };
+		FA64C75B20E74C37001083C0 /* DKRecordsUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKRecordsUtil.swift; sourceTree = "<group>"; };
+		FA64C75C20E74C38001083C0 /* DKCoreDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKCoreDataSet.swift; sourceTree = "<group>"; };
+		FA64C75D20E74C38001083C0 /* DKRecords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKRecords.swift; sourceTree = "<group>"; };
+		FA64C76220F24474001083C0 /* DKResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKResult.swift; sourceTree = "<group>"; };
 		FEFDB4CD00AC3618E7616901304BD914 /* Pods-DKMacLibrary_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DKMacLibrary_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -364,6 +372,7 @@
 		155D8DE3334F7442227E97290343B053 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA64C76120E74C4A001083C0 /* CoreData */,
 				FA03B23620D4F04F00BB5115 /* DKCalendars.swift */,
 				FA03B23220D4F04E00BB5115 /* DKDateUtil.swift */,
 				FA03B23120D4F04E00BB5115 /* DKDialogUtil.swift */,
@@ -654,6 +663,17 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Nimble";
+			sourceTree = "<group>";
+		};
+		FA64C76120E74C4A001083C0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FA64C76220F24474001083C0 /* DKResult.swift */,
+				FA64C75D20E74C38001083C0 /* DKRecords.swift */,
+				FA64C75B20E74C37001083C0 /* DKRecordsUtil.swift */,
+				FA64C75C20E74C38001083C0 /* DKCoreDataSet.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -964,12 +984,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E384F3F9AFAF82EBA3E07D92DB4856D /* DKMacLibrary-dummy.m in Sources */,
+				FA64C76320F24475001083C0 /* DKResult.swift in Sources */,
 				FA03B23820D4F04F00BB5115 /* DKGcd.swift in Sources */,
 				FA03B23920D4F04F00BB5115 /* DKDialogUtil.swift in Sources */,
 				FA03B23B20D4F04F00BB5115 /* DKTextUtil.swift in Sources */,
 				FA03B23A20D4F04F00BB5115 /* DKDateUtil.swift in Sources */,
 				FA03B23C20D4F04F00BB5115 /* DKUtil.swift in Sources */,
 				FA03B23720D4F04F00BB5115 /* DKFormulaUtil.swift in Sources */,
+				FA64C76020E74C39001083C0 /* DKRecords.swift in Sources */,
+				FA64C75F20E74C39001083C0 /* DKCoreDataSet.swift in Sources */,
+				FA64C75E20E74C39001083C0 /* DKRecordsUtil.swift in Sources */,
 				FA03B23D20D4F04F00BB5115 /* ExLog.swift in Sources */,
 				FA03B23E20D4F04F00BB5115 /* DKCalendars.swift in Sources */,
 			);

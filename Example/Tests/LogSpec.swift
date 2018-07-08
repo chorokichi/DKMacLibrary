@@ -12,14 +12,20 @@ import DKMacLibrary
 
 class LogSpec: QuickSpec {
     override func spec() {
-        describe("DKLog"){
+        describe("ExLog"){
             it("Call log method and confirm there are no issues"){
                 let msg = "Test"
                 ExLog.log(msg)
+                expect(ExLog.history).to(contain(#function))
+                ExLog.log(msg, format:.Short)
+                expect(ExLog.history).notTo(contain(#function))
                 ExLog.log(msg, type:.Important)
                 ExLog.log(msg, type:.Debug)
                 ExLog.log(msg, type:.Error)
                 ExLog.error(msg)
+                ExLog.emptyLine()
+                ExLog.separatorLine("-", repeatNum: 7)
+                ExLog.emptyLine(3)
             }
             
             it("getFolderPathHavingCoreDataFile should be correct path without any error"){
