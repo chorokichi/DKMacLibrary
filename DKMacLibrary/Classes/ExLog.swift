@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// ログ用クラス
+///
 open class ExLog{
     
     // ファイルにログを出力するかどうか
@@ -22,8 +24,7 @@ open class ExLog{
     /// 初期設定。AppDelegateのapplicationDidFinishLaunchingで呼び出すことを想定している
     /// - parameter appName: ログファイルを格納するドキュメントフォルダー内のフォルダー名(Init: "DKMacLibraryTest")
     /// - parameter fileName: ログファイル名(Init: "debug-log.log")
-    open static func configure(appName:String? = nil, fileName:String? = nil, shouldFileOutput:Bool? = nil){
-        
+    public static func configure(appName:String? = nil, fileName:String? = nil, shouldFileOutput:Bool? = nil){
         if let appName = appName{
             AppName = appName
         }
@@ -36,7 +37,7 @@ open class ExLog{
     }
     
     /// デバッグ時しか実行したくないコードによってのみ取得できるログを出力するメソッド。コールバックメソッドの返り値がログ出力される。
-    open static func log(classFile: String = #file,
+    public static func log(classFile: String = #file,
                          functionName: String = #function,
                          lineNumber: Int = #line,
                          type: ExLogType = .Info, _ runOnDebug:() -> Any?){
@@ -51,7 +52,7 @@ open class ExLog{
     }
     
     /// メソッド名をログに出力
-    open static func method(classFile: String = #file,
+    public static func method(classFile: String = #file,
                          functionName: String = #function,
                          lineNumber: Int = #line,
                          type: ExLogType = .Info){
@@ -65,7 +66,7 @@ open class ExLog{
         }
     }
     
-    open static func emptyLine(_ lineNums:Int = 1){
+    public static func emptyLine(_ lineNums:Int = 1){
         if Debug{
             var msg = ""
             for _ in 1..<lineNums{
@@ -75,7 +76,7 @@ open class ExLog{
         }
     }
     
-    open static func separatorLine(_ character:String = "-", repeatNum:Int = 10){
+    public static func separatorLine(_ character:String = "-", repeatNum:Int = 10){
         if Debug{
             var msg = ""
             for _ in 0..<repeatNum{
@@ -86,7 +87,7 @@ open class ExLog{
         }
     }
     
-    open static func log(_ object: Any? = "No Log",
+    public static func log(_ object: Any? = "No Log",
                     classFile: String = #file,
                     functionName: String = #function,
                     lineNumber: Int = #line,
@@ -107,7 +108,7 @@ open class ExLog{
         }
     }
     
-    open static func error(_ object: Any? = "No Log",
+    public static func error(_ object: Any? = "No Log",
                          classFile: String = #file,
                          functionName: String = #function,
                          lineNumber: Int = #line,
@@ -127,7 +128,7 @@ open class ExLog{
 /// Util系
 extension ExLog{
     // CoreDataのファイルなどを保存するフォルダーのパスを取得するメソッド
-    open static func getFolderPathHavingCoreDataFile() -> String
+    public static func getFolderPathHavingCoreDataFile() -> String
     {
         let supportDirectory = FileManager.SearchPathDirectory.applicationSupportDirectory
         let searchPathDomainMask = FileManager.SearchPathDomainMask.allDomainsMask
@@ -135,7 +136,7 @@ extension ExLog{
         return directories.first ?? "Not Found path"
     }
     
-    open static func getFileName(classFile: String = #file) -> String
+    public static func getFileName(classFile: String = #file) -> String
     {
         if let fileNameWithExtension = URL(string: String(classFile))?.lastPathComponent {
             if case let fileName = fileNameWithExtension.components(separatedBy: "."), fileName.count > 0{
@@ -156,7 +157,7 @@ extension ExLog{
     /// }
     /// ```
     /// - Returns: テスト判定結果
-    open static func isTesting() -> Bool {
+    public static func isTesting() -> Bool {
         if Debug{
             return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
         }else{
@@ -171,7 +172,7 @@ extension ExLog{
     private static var FileName = "debug-log.log"
     
     // 直前の表示内容を記録している文字列
-    open static var history:String = ""
+    public static var history:String = ""
     private static func output(_ msg:String){
         print(msg)
         if ShouldFileOutput{
@@ -180,7 +181,7 @@ extension ExLog{
         history = msg
     }
     
-    open static func createOrGetFolderForLog() -> URL?{
+    public static func createOrGetFolderForLog() -> URL?{
         let fm = FileManager.default
         guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else{
             print("documentDirectory is nil")
@@ -204,7 +205,7 @@ extension ExLog{
         return folderUrl
     }
     
-    open static func getLogFileForLog() -> URL?{
+    public static func getLogFileForLog() -> URL?{
         return createOrGetFolderForLog()?.appendingPathComponent(FileName)
     }
     
@@ -258,7 +259,6 @@ public enum ExLogType : String{
             return "✂️"
         case .Error:
             return "⚠️"
-            
         }
     }
 }
