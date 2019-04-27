@@ -7,18 +7,17 @@
 //
 
 import Cocoa
+import DKMacLibrary
 
 class ViewController: NSViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    // Do any additional setup after loading the view.
+    ExLog.log("isTesting? => \(ExTest.isTesting())")
   }
 
   override var representedObject: Any? {
     didSet {
-    // Update the view, if already loaded.
     }
   }
 

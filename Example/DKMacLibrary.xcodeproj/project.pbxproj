@@ -13,7 +13,9 @@
 		ED83F67E20348A760038D96B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED83F67D20348A760038D96B /* ViewController.swift */; };
 		ED83F68020348A760038D96B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED83F67F20348A760038D96B /* Assets.xcassets */; };
 		ED83F68320348A760038D96B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED83F68120348A760038D96B /* Main.storyboard */; };
-		FA03B24120D4F13E00BB5115 /* LogSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03B23F20D4F0F400BB5115 /* LogSpec.swift */; };
+		FA03B24120D4F13E00BB5115 /* ExLogSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */; };
+		FA7E1CF72274A0500044133E /* ExFileSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CF522749FFE0044133E /* ExFileSpec.swift */; };
+		FA7E1CFD2274A8D20044133E /* ExTestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,9 @@
 		ED83F68520348A760038D96B /* DKMacLibrary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DKMacLibrary.entitlements; sourceTree = "<group>"; };
 		ED83F68A20348A760038D96B /* DKMacLibrary_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DKMacLibrary_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED83F69020348A760038D96B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA03B23F20D4F0F400BB5115 /* LogSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSpec.swift; sourceTree = "<group>"; };
+		FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExLogSpec.swift; sourceTree = "<group>"; };
+		FA7E1CF522749FFE0044133E /* ExFileSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFileSpec.swift; sourceTree = "<group>"; };
+		FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTestSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +129,9 @@
 		ED83F68D20348A760038D96B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				FA03B23F20D4F0F400BB5115 /* LogSpec.swift */,
+				FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */,
+				FA7E1CF522749FFE0044133E /* ExFileSpec.swift */,
+				FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */,
 				ED83F69020348A760038D96B /* Info.plist */,
 			);
 			path = Tests;
@@ -153,7 +159,6 @@
 				ED83F67520348A760038D96B /* Frameworks */,
 				ED83F67620348A760038D96B /* Resources */,
 				56C703BB1E18768541B5127A /* [CP] Embed Pods Frameworks */,
-				B18510AFE18BC2FEDF0E2E81 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -173,7 +178,6 @@
 				ED83F68720348A760038D96B /* Frameworks */,
 				ED83F68820348A760038D96B /* Resources */,
 				0AF212E36FF0EF614A171D7E /* [CP] Embed Pods Frameworks */,
-				4663B8BC1E954CC11E90F430 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,13 +255,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DKMacLibrary_Tests/Pods-DKMacLibrary_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DKMacLibrary_Tests/Pods-DKMacLibrary_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DKMacLibrary_Tests/Pods-DKMacLibrary_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		32296E3A0CF17B56FD39486B /* [CP] Check Pods Manifest.lock */ = {
@@ -266,28 +275,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DKMacLibrary_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		4663B8BC1E954CC11E90F430 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DKMacLibrary_Tests/Pods-DKMacLibrary_Tests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		56C703BB1E18768541B5127A /* [CP] Embed Pods Frameworks */ = {
@@ -296,28 +293,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DKMacLibrary_Example/Pods-DKMacLibrary_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DKMacLibrary/DKMacLibrary.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKMacLibrary.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DKMacLibrary_Example/Pods-DKMacLibrary_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B18510AFE18BC2FEDF0E2E81 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DKMacLibrary_Example/Pods-DKMacLibrary_Example-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DKMacLibrary_Example/Pods-DKMacLibrary_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D174E304706780A9E2258C41 /* [CP] Check Pods Manifest.lock */ = {
@@ -326,13 +311,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DKMacLibrary_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -351,7 +339,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA03B24120D4F13E00BB5115 /* LogSpec.swift in Sources */,
+				FA03B24120D4F13E00BB5115 /* ExLogSpec.swift in Sources */,
+				FA7E1CFD2274A8D20044133E /* ExTestSpec.swift in Sources */,
+				FA7E1CF72274A0500044133E /* ExFileSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

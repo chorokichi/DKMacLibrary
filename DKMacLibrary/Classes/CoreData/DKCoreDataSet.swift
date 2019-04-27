@@ -68,7 +68,7 @@ open class DKCoreData
     /// 補足：本当はprivateにしたいがinitInstanceメソッドで初期化する際にpublicにしておく必要がある()
     public required init(completionHandler: @escaping (NSManagedObjectContext?) -> ())
     {
-        ExLog.log("初期化 - " + ExLog.getFolderPathHavingCoreDataFile())
+        ExLog.log("初期化 - " + ExFile.getFolderPathHavingCoreDataFile())
         DKCoreDataSet.factoryInstance(requiredData: self.data) { (result:DKResult<DKCoreDataSet, Error>) in
             ExLog.log("**** callback method")
             switch result

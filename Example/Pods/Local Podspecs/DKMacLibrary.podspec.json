@@ -1,19 +1,19 @@
 {
   "name": "DKMacLibrary",
-  "version": "0.1.0",
-  "summary": "A short description of DKMacLibrary.",
+  "version": "0.1.2",
+  "summary": "MacOS用の自作ライブラリー。",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Jirokichi/DKMacLibrary",
+  "homepage": "https://github.com/chorokichi/DKMacLibrary",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "Jirokichi": "kdy.developer@gmail.com"
+    "Chorokichi": "kdy.developer@gmail.com"
   },
   "source": {
-    "git": "https://github.com/Jirokichi/DKMacLibrary.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/chorokichi/DKMacLibrary.git",
+    "tag": "0.1.2"
   },
   "platforms": {
     "osx": "10.10"
