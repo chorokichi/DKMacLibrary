@@ -14,10 +14,10 @@ import DKMacLibrary
 class ExTestSpec : QuickSpec{
     override func spec(){
         describe("ExTestSpec") {
-            it("isTest?", closure: {
+            it("isTest?"){
                 let isTest = ExTest.isTesting()
                 expect(isTest).to(equal(true))
-            })
+            }
         }
     }
     

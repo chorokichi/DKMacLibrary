@@ -233,6 +233,7 @@ public enum ExLogType : String{
 public enum ExLogFormat{
     case Normal
     case Short
+    case NoPostFix
     case Raw
     func string(emoji:String, date:Date, msg:Any, functionName:String, classDetail:String, lineNumber:Int) -> String{
         // 日時フォーマット
@@ -246,6 +247,10 @@ public enum ExLogFormat{
             dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
             let dateStr = dateFormatter.string(from: Date())
             return "[\(threadName)][\(emoji)][\(dateStr)]:\(msg) [\(functionName)/\(classDetail)(\(lineNumber))]"
+        case .NoPostFix:
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+            let dateStr = dateFormatter.string(from: Date())
+            return "[\(threadName)][\(emoji)][\(dateStr)]:\(msg)"
         case .Short:
             dateFormatter.dateFormat = "HH:mm:ss"
             let dateStr = dateFormatter.string(from: Date())
