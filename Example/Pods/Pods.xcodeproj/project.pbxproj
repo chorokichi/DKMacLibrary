@@ -658,7 +658,8 @@
 				FA7E1D002274BFEC0044133E /* WeekDay.swift */,
 				FA7E1D032274C1290044133E /* RichDate.swift */,
 			);
-			path = DateModel;
+			name = DateModel;
+			path = DKMacLibrary/Classes/DateModel;
 			sourceTree = "<group>";
 		};
 		FCF4AADAEF1B6552F0D51C22C9E3971F /* DKMacLibrary */ = {
