@@ -12,36 +12,36 @@ import DKMacLibrary
 
 class ExLogSpec: QuickSpec {
     override func spec() {
-        describe("Basic"){
-            it("Call log method and confirm there are no issues"){
+        describe("Basic") {
+            it("Call log method and confirm there are no issues") {
                 let msg = "Test"
                 ExLog.log(msg)
                 expect(ExLog.getHistory()).to(contain(#function))
-                ExLog.log(msg, format:.Short)
+                ExLog.log(msg, format: .Short)
                 expect(ExLog.getHistory()).notTo(contain(#function))
-                ExLog.log(msg, type:.Important)
-                ExLog.log(msg, type:.Debug)
-                ExLog.log(msg, type:.Error)
+                ExLog.log(msg, type: .Important)
+                ExLog.log(msg, type: .Debug)
+                ExLog.log(msg, type: .Error)
                 ExLog.error(msg)
                 ExLog.emptyLine()
                 ExLog.separatorLine("-", repeatNum: 7)
                 ExLog.emptyLine(3)
             }
-            
-            it("Check Log"){
+
+            it("Check Log") {
                 ExLog.log("")
                 expect(ExLog.getHistory()).notTo(contain("Kida"))
-                
+
                 ExLog.log("Kida")
                 expect(ExLog.getHistory()).to(contain("Kida"))
                 expect(ExLog.getHistory()).notTo(equal("Kida")) // 関数名などがあるため完全に一致はしない
-                
-                ExLog.log("Kida", format:.Raw)
+
+                ExLog.log("Kida", format: .Raw)
                 expect(ExLog.getHistory()).to(contain("Kida"))
                 expect(ExLog.getHistory()).to(equal("Kida"))
             }
-            
-            it("async pattern"){
+
+            it("async pattern") {
                 DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 10) {
                     // 0.5秒後に実行する処理
                     ExLog.log("Async Log")

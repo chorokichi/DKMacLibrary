@@ -44,7 +44,7 @@ open class DKRecords: NSManagedObject
     /// 注意：
     /// ・主キーで一致するデータがある場合は、そのデータを返す
     /// ・主キーで一致するデータがない場合は、新規にデータを作成して主キーの値のみ設定する
-    open static func createEmptyEntity<T:DKRecords>(_ context:NSManagedObjectContext, valueOfPrimaryAttribute value:String? = nil, type:T.Type) -> (result:DKRecords.Result, record:T)
+    public static func createEmptyEntity<T:DKRecords>(_ context:NSManagedObjectContext, valueOfPrimaryAttribute value:String? = nil, type:T.Type) -> (result:DKRecords.Result, record:T)
     {
         
         // 主キーで一致するデータがある場合は、そのデータを返す
@@ -83,7 +83,7 @@ open class DKRecords: NSManagedObject
     }
     
     /// typeを引数に設定しないと宣言時に明示的にDKRecordsのサブクラスを設定する必要があり、実行時エラーの原因になる。そのため、typeをメソッド呼び出し時に強制することでそのエラーを抑えることを狙っている。
-    open static func fetchRecords<T: DKRecords>(_ context:NSManagedObjectContext, sortDescriptor:NSSortDescriptor? = nil, predicate:NSPredicate? = nil, type:T.Type) throws -> [T]
+    public static func fetchRecords<T: DKRecords>(_ context:NSManagedObjectContext, sortDescriptor:NSSortDescriptor? = nil, predicate:NSPredicate? = nil, type:T.Type) throws -> [T]
     {
         let fetchRequest:NSFetchRequest<T> = self.fetchRequest()
         if let sortDescriptor = sortDescriptor
@@ -101,7 +101,7 @@ open class DKRecords: NSManagedObject
     }
     
     /// typeを引数に設定しないと宣言時に明示的にDKRecordsのサブクラスを設定する必要があり、実行時エラーの原因になる。そのため、typeをメソッド呼び出し時に強制することでそのエラーを抑えることを狙っている。
-    open static func fetchOneRecord<T: DKRecords>(_ context:NSManagedObjectContext, valueOfPrimaryAttribute value:String, type:T.Type) -> T?
+    public static func fetchOneRecord<T: DKRecords>(_ context:NSManagedObjectContext, valueOfPrimaryAttribute value:String, type:T.Type) -> T?
     {
         guard let attr = PrimaryAttribute else
         {
@@ -134,7 +134,7 @@ open class DKRecords: NSManagedObject
     }
     
     /// すべてのレコードを削除する[永続はされない]
-    open static func deleteAllRecords(_ context:NSManagedObjectContext) throws
+    public static func deleteAllRecords(_ context:NSManagedObjectContext) throws
     {
         let entityDiscription = NSEntityDescription.entity(forEntityName: self.EntityName, in: context)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()

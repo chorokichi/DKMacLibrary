@@ -132,7 +132,7 @@ open class DKCoreData
     }
     
     /// Save changes in the application's managed object context before the application terminates.
-    open static func saveAnyChangesBeforeApplicationTerminates(_ sender: NSApplication, context:NSManagedObjectContext?, runClass:NSObject) -> NSApplication.TerminateReply
+    public static func saveAnyChangesBeforeApplicationTerminates(_ sender: NSApplication, context:NSManagedObjectContext?, runClass:NSObject) -> NSApplication.TerminateReply
     {
         
         guard let context = context else

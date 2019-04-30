@@ -15,6 +15,7 @@
 		ED83F68320348A760038D96B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED83F68120348A760038D96B /* Main.storyboard */; };
 		FA03B24120D4F13E00BB5115 /* ExLogSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */; };
 		FA74B7DE22758AFE008BBD2C /* RichDateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA74B7DD22758AFE008BBD2C /* RichDateSpec.swift */; };
+		FA74B7E122789CDF008BBD2C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FA74B7E022789CDF008BBD2C /* .swiftlint.yml */; };
 		FA7E1CF72274A0500044133E /* ExFileSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CF522749FFE0044133E /* ExFileSpec.swift */; };
 		FA7E1CFD2274A8D20044133E /* ExTestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */; };
 		FA7E1CFF2274AAE00044133E /* ExCalendarsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CFE2274AAE00044133E /* ExCalendarsSpec.swift */; };
@@ -52,6 +53,7 @@
 		ED83F69020348A760038D96B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExLogSpec.swift; sourceTree = "<group>"; };
 		FA74B7DD22758AFE008BBD2C /* RichDateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichDateSpec.swift; sourceTree = "<group>"; };
+		FA74B7E022789CDF008BBD2C /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		FA7E1CF522749FFE0044133E /* ExFileSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFileSpec.swift; sourceTree = "<group>"; };
 		FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTestSpec.swift; sourceTree = "<group>"; };
 		FA7E1CFE2274AAE00044133E /* ExCalendarsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCalendarsSpec.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		ED83F66F20348A760038D96B = {
 			isa = PBXGroup;
 			children = (
+				FA74B7E022789CDF008BBD2C /* .swiftlint.yml */,
 				ED83F69A20348B650038D96B /* Podspec Metadata */,
 				ED83F67A20348A760038D96B /* DKMacLibrary */,
 				ED83F68D20348A760038D96B /* Tests */,
@@ -168,6 +171,7 @@
 				ED83F67420348A760038D96B /* Sources */,
 				ED83F67520348A760038D96B /* Frameworks */,
 				ED83F67620348A760038D96B /* Resources */,
+				FA74B7DF22789C88008BBD2C /* ShellScript */,
 				56C703BB1E18768541B5127A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -244,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA74B7E122789CDF008BBD2C /* .swiftlint.yml in Resources */,
 				ED83F68020348A760038D96B /* Assets.xcassets in Resources */,
 				ED83F68320348A760038D96B /* Main.storyboard in Resources */,
 			);
@@ -332,6 +337,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FA74B7DF22789C88008BBD2C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#swiftlintをPodでインストールしている(versionを固定にするため)\nif which swiftlint >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

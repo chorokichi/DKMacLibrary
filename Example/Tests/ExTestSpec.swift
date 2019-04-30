@@ -11,14 +11,14 @@ import Quick
 import Nimble
 import DKMacLibrary
 
-class ExTestSpec : QuickSpec{
-    override func spec(){
+class ExTestSpec: QuickSpec {
+    override func spec() {
         describe("ExTestSpec") {
-            it("isTest?"){
+            it("isTest?") {
                 let isTest = ExTest.isTesting()
                 expect(isTest).to(equal(true))
             }
         }
     }
-    
+
 }
