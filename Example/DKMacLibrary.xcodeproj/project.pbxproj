@@ -20,6 +20,7 @@
 		FA7E1CFD2274A8D20044133E /* ExTestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */; };
 		FA7E1CFF2274AAE00044133E /* ExCalendarsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CFE2274AAE00044133E /* ExCalendarsSpec.swift */; };
 		FA7E1D0622751D920044133E /* WeekDaySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1D0522751D920044133E /* WeekDaySpec.swift */; };
+		FAD6BC0A2279ABB3008E563F /* ExQuickConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6BC092279ABB3008E563F /* ExQuickConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTestSpec.swift; sourceTree = "<group>"; };
 		FA7E1CFE2274AAE00044133E /* ExCalendarsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCalendarsSpec.swift; sourceTree = "<group>"; };
 		FA7E1D0522751D920044133E /* WeekDaySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaySpec.swift; sourceTree = "<group>"; };
+		FAD6BC092279ABB3008E563F /* ExQuickConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExQuickConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		ED83F68D20348A760038D96B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				FAD6BC092279ABB3008E563F /* ExQuickConfiguration.swift */,
 				FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */,
 				FA7E1CF522749FFE0044133E /* ExFileSpec.swift */,
 				FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */,
@@ -215,10 +218,12 @@
 				TargetAttributes = {
 					ED83F67720348A760038D96B = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					ED83F68920348A760038D96B = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = ED83F67720348A760038D96B;
 					};
@@ -376,6 +381,7 @@
 				FA74B7DE22758AFE008BBD2C /* RichDateSpec.swift in Sources */,
 				FA7E1CFD2274A8D20044133E /* ExTestSpec.swift in Sources */,
 				FA7E1D0622751D920044133E /* WeekDaySpec.swift in Sources */,
+				FAD6BC0A2279ABB3008E563F /* ExQuickConfiguration.swift in Sources */,
 				FA7E1CF72274A0500044133E /* ExFileSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,7 +531,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.DKMacLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -542,7 +548,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.DKMacLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -557,7 +563,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.DKMacLibrary-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DKMacLibrary_Example.app/Contents/MacOS/DKMacLibrary_Example";
 			};
 			name = Debug;
@@ -573,7 +579,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.DKMacLibrary-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DKMacLibrary_Example.app/Contents/MacOS/DKMacLibrary_Example";
 			};
 			name = Release;

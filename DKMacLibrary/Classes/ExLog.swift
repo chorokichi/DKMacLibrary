@@ -86,10 +86,18 @@ open class ExLog{
         guard let data = (msg + "\n").data(using: .utf8, allowLossyConversion: false) else{
             return
         }
-        let result = data.withUnsafeBytes {
-            output.write($0, maxLength: data.count)
-        }
         
+        let result = data.withUnsafeBytes { (pointer: UnsafeRawBufferPointer) -> UInt8 in
+            guard let baseAddress = pointer.bindMemory(to: UInt8.self).baseAddress else{
+                return 0
+            }
+            output.write(baseAddress, maxLength: data.count)
+            return pointer.load(as: UInt8.self)
+        }
+
+//        let result = data.withUnsafeBytes {
+//            output.write($0, maxLength: data.count)
+//        }
         if result <= 0{
             print("[\(result)]fail to write msg into \(fileUrl)")
         }
@@ -184,12 +192,15 @@ open class ExLog{
     }
     
     // 同じ文字を複数個出力する。セパレーターとして利用できる。（例：　"----------"）
-    public static func separatorLine(_ character:String = "-", repeatNum:Int = 10){
+    public static func separatorLine(_ character:String = "-", repeatNum:Int = 10, postFix: String? = nil){
         let log = ExLog.instance
         if log.Debug{
             var msg = ""
             for _ in 0..<repeatNum{
                 msg = msg + character
+            }
+            if let postFix = postFix{
+               msg = msg + postFix
             }
             log.output(msg)
             log.history = msg
