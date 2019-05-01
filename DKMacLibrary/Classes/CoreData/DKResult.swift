@@ -8,8 +8,7 @@
 
 import Foundation
 
-public enum DKResult<T, Error>
-{
+public enum DKResult<T, Error> {
     case success(T)
     case failure(Error)
 }

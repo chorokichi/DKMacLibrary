@@ -7,12 +7,12 @@
 
 import Foundation
 
-public enum WeeekDayError : Error{
+public enum WeeekDayError: Error {
     case NotDefinedKey
     case NotDefinedValue
 }
 
-public enum WeekDay:Int{
+public enum WeekDay: Int {
     case Sun = 0
     case Mon = 1
     case Tue = 2
@@ -21,36 +21,34 @@ public enum WeekDay:Int{
     case Fri = 5
     case Sat = 6
     
-    private enum Key:String{
-        case Sun = "Sun"
-        case Mon = "Mon"
-        case Tue = "Tue"
-        case Wed = "Wed"
-        case Thu = "Thu"
-        case Fri = "Fri"
-        case Sat = "Sat"
+    private enum Key: String {
+        case Sun
+        case Mon
+        case Tue
+        case Wed
+        case Thu
+        case Fri
+        case Sat
     }
     
-    public init(_ int:Int?) throws{
-        guard let int = int else{
+    public init(_ int: Int?) throws {
+        guard let int = int else {
             throw WeeekDayError.NotDefinedValue
         }
         
-        if let tmp = WeekDay(rawValue: int){
+        if let tmp = WeekDay(rawValue: int) {
             self = tmp
             return
         }
         throw WeeekDayError.NotDefinedValue
     }
     
-    public init(key:String) throws{
-        guard let keyType:Key = Key(rawValue: key) else
-        {
+    public init(key: String) throws {
+        guard let keyType: Key = Key(rawValue: key) else {
             throw WeeekDayError.NotDefinedKey
         }
         
-        switch keyType
-        {
+        switch keyType {
         case .Sun:
             self = .Sun
         case .Mon:
@@ -70,8 +68,8 @@ public enum WeekDay:Int{
 
     // 次の曜日を取得(自分自体も書き換える)
     @discardableResult
-    public mutating func next() -> WeekDay{
-        var newValue:WeekDay
+    public mutating func next() -> WeekDay {
+        var newValue: WeekDay
         if let val = WeekDay(rawValue: self.rawValue + 1) {
             newValue = val
         } else {
@@ -83,8 +81,8 @@ public enum WeekDay:Int{
     
     // 次の曜日を取得(自分自体も書き換える)
     @discardableResult
-    public mutating func back() -> WeekDay{
-        var newValue:WeekDay
+    public mutating func back() -> WeekDay {
+        var newValue: WeekDay
         if let val = WeekDay(rawValue: self.rawValue - 1) {
             newValue = val
         } else {
@@ -113,15 +111,13 @@ public enum WeekDay:Int{
 //        }
 //    }
     
-    public func getKey() -> String
-    {
-        let key:Key = self.getKey()
+    public func getKey() -> String {
+        let key: Key = self.getKey()
         return key.rawValue
     }
     
-    private func getKey() -> Key
-    {
-        switch self{
+    private func getKey() -> Key {
+        switch self {
         case .Sun:
             return Key.Sun
         case .Mon:

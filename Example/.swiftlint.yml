@@ -39,6 +39,12 @@ variable_name_min_length:
 - 1 # warning
 - 0 # error
 
+function_parameter_count:
+- 6
+
 excluded: # Lint対象から外すファイルのあるパスを記述
 - Pods
 - CommandLineTool
+
+included:
+- ../DKMacLibrary # 自作ライブラリーのファイルのチェックを実施するために追加

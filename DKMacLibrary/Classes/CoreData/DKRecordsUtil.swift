@@ -8,16 +8,14 @@
 
 import Foundation
 
-public struct DKRecordUtil
-{
+public struct DKRecordUtil {
     /// コンテキストの変更点を保存するための関数。変更なければfalseを返す。
     /// - parameter context: コンテキスト
     /// - returns: 変更の保存に成功した場合true。変更が一件もなければfalseを返す。
     /// - throws: 変更点があるのに永続化に失敗した場合のエラー
-    public static func saveContext (_ context:NSManagedObjectContext?) throws -> Bool{
+    public static func saveContext (_ context: NSManagedObjectContext?) throws -> Bool {
         
-        guard let context = context else
-        {
+        guard let context = context else {
             ExLog.error("context is empty")
             return false
         }
@@ -31,9 +29,7 @@ public struct DKRecordUtil
                 throw nserror
             }
             return true
-        }
-        else
-        {
+        } else {
             ExLog.log("Context does not have any changes")
             return false
         }

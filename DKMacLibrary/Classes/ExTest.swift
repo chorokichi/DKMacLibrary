@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ExTest{
+public class ExTest {
     /// テスト実行中の判定(DEBUG以外では必ずfalse)。didFinishLaunchingWithOptionsに次のように埋め込むと良い。
     /// ```
     /// // iOS
