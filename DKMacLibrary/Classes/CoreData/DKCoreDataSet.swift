@@ -40,11 +40,10 @@ open class DKCoreData {
     /// ひとつのクラスでは一つしか作成されない。
     private static var _Instance: [DKCoreData] = []
     private static func getInstance() -> DKCoreData? {
-        for instance in self._Instance {
-            if self  == type(of: instance) {
-                return instance
-            }
+        for instance in self._Instance where self == type(of: instance) {
+            return instance
         }
+        ExLog.error("Not found any instances related with \(self). The number of _Instance is \(_Instance.count)")
         return nil
     }
     
