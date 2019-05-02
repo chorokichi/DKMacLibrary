@@ -8,22 +8,16 @@
 
 import Foundation
 
-
-public struct DKTextUtil
-{
-    public static func isEmpty(str:String?) -> Bool
-    {
-        if let str = str, str != ""
-        {
+public struct DKTextUtil {
+    public static func isEmpty(str: String?) -> Bool {
+        if let str = str, str != "" {
             return false
-        }else
-        {
+        } else {
             return true
         }
     }
     
-    public static func deleteSpaceAndNewLines(str:String) -> String
-    {
+    public static func deleteSpaceAndNewLines(str: String) -> String {
         let trimedStr = str.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         return trimedStr
     }

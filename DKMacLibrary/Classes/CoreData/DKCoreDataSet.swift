@@ -9,7 +9,6 @@
 import Foundation
 import Cocoa
 
-
 /// コアデータを操作するための設定を簡易化してくれるクラス。
 /// 継承した子クラスで静的メソッドinitInstanceによってインタンスを
 /// 作成することで、永続ファイルと関連したメインスレッド用NSManagedContextを
@@ -21,11 +20,9 @@ import Cocoa
 /// 1. このクラスは直接利用せず、継承した子クラスを利用すること
 /// 2. 子クラスではdataをオーバーライドしてRequiredDataを設定すること
 /// 3. 子クラスであってもイニシャライザは外から呼び出してはならない。代わりにinitInstanceを利用すること。
-open class DKCoreData
-{
-    public typealias RequiredData = (xcDataModelName:String, packageName:String, storeDataName:String)
-    public enum Status
-    {
+open class DKCoreData {
+    public typealias RequiredData = (xcDataModelName: String, packageName: String, storeDataName: String)
+    public enum Status {
         case NotInitilazed
         case Initializing
         case Initilazed
@@ -34,46 +31,36 @@ open class DKCoreData
     ///
     /// 子クラスで必ず実装する必要がある変数
     ///
-    open var data:DKCoreData.RequiredData
-    {
+    open var data: DKCoreData.RequiredData {
         ExLog.error("Not Defined in Sub class")
         fatalError("Not Defined in Sub class")
     }
     
-    
     /// DKCoreDataを継承したクラスでinitInstanceしたときに保存される配列
     /// ひとつのクラスでは一つしか作成されない。
-    private static var _Instance:[DKCoreData] = []
-    private static func getInstance() -> DKCoreData?
-    {
-        for instance in self._Instance
-        {
-            if self  == type(of:instance)
-            {
-                return instance
-            }
+    private static var _Instance: [DKCoreData] = []
+    private static func getInstance() -> DKCoreData? {
+        for instance in self._Instance where self == type(of: instance) {
+            return instance
         }
+        ExLog.error("Not found any instances related with \(self). The number of _Instance is \(_Instance.count)")
         return nil
     }
     
-    public static func getCoreDataNum() -> Int
-    {
+    public static func getCoreDataNum() -> Int {
         return self._Instance.count
     }
-    
 
-    var context:NSManagedObjectContext? = nil
+    var context: NSManagedObjectContext?
     
     /// このメソッドは呼び出してはいけない！！！！
     /// 補足：本当はprivateにしたいがinitInstanceメソッドで初期化する際にpublicにしておく必要がある()
-    public required init(completionHandler: @escaping (NSManagedObjectContext?) -> ())
-    {
+    public required init(completionHandler: @escaping (NSManagedObjectContext?) -> Void) {
         ExLog.log("初期化 - " + ExFile.getFolderPathHavingCoreDataFile())
-        DKCoreDataSet.factoryInstance(requiredData: self.data) { (result:DKResult<DKCoreDataSet, Error>) in
+        DKCoreDataSet.factoryInstance(requiredData: self.data) { (result: DKResult<DKCoreDataSet, Error>) in
             ExLog.log("**** callback method")
-            switch result
-            {
-            case .failure( _):
+            switch result {
+            case .failure:
                 ExLog.log("**** failure")
             case .success(let set):
                 ExLog.log("**** success: \n\(set.description)")
@@ -85,29 +72,21 @@ open class DKCoreData
             completionHandler(nil)
         }
     }
-
     
     @discardableResult
-    public class func initInstance(completionHandler: @escaping (NSManagedObjectContext?) -> ()) -> DKCoreData.Status
-    {
-        if let instance = self.getInstance()
-        {   
+    public class func initInstance(completionHandler: @escaping (NSManagedObjectContext?) -> Void) -> DKCoreData.Status {
+        if let instance = self.getInstance() {   
             ExLog.log("すでにインスタンスあり -> 初期化不要")
-            if let context = instance.context
-            {
+            if let context = instance.context {
                 ExLog.log("\tすでにコンテキストもあり -> Initilized")
                 completionHandler(context)
                 return .Initilazed
-            }
-            else
-            {
+            } else {
                 ExLog.log("\tまだコンテキストはなし -> Initializing")
                 completionHandler(nil)
                 return .Initializing
             }
-        }
-        else
-        {
+        } else {
              ExLog.log("まだインスタンスなし -> 初期化実施")
             let instance = self.init(completionHandler: completionHandler)
             self._Instance.append(instance)
@@ -117,26 +96,20 @@ open class DKCoreData
     
     /// コンテキストを返すメソッド
     /// 注意：先にinitInstanceでcontextを初期化していないと正常な値が返ってこない。このメソッドは確実にcontextが初期化されている場合のみ利用できる
-    public static func getContext() -> NSManagedObjectContext?
-    {
+    public static func getContext() -> NSManagedObjectContext? {
         
-        if let instance = self.getInstance(), let context = instance.context
-        {
+        if let instance = self.getInstance(), let context = instance.context {
             return context
-        }
-        else
-        {
+        } else {
             ExLog.error("まだ初期化されていません。先にinitInstanceが呼ばれて初期化される必要があります")
             return nil
         }
     }
     
     /// Save changes in the application's managed object context before the application terminates.
-    open static func saveAnyChangesBeforeApplicationTerminates(_ sender: NSApplication, context:NSManagedObjectContext?, runClass:NSObject) -> NSApplication.TerminateReply
-    {
+    public static func saveAnyChangesBeforeApplicationTerminates(_ sender: NSApplication, context: NSManagedObjectContext?, runClass: NSObject) -> NSApplication.TerminateReply {
         
-        guard let context = context else
-        {
+        guard let context = context else {
             ExLog.error()
             return .terminateNow
         }
@@ -156,12 +129,12 @@ open class DKCoreData
             let nserror = error as NSError
             // Customize this code block to include application-specific recovery steps.
             let result = sender.presentError(nserror)
-            if (result) {
+            if result {
                 return .terminateCancel
             }
             
             let question = NSLocalizedString("Could not save changes while quitting. Quit anyway?", comment: "Quit without saves error question message")
-            let info = NSLocalizedString("Quitting now will lose any changes you have made since the last successful save", comment: "Quit without saves error question info");
+            let info = NSLocalizedString("Quitting now will lose any changes you have made since the last successful save", comment: "Quit without saves error question info")
             let quitButton = NSLocalizedString("Quit anyway", comment: "Quit anyway button title")
             let cancelButton = NSLocalizedString("Cancel", comment: "Cancel button title")
             let alert = NSAlert()
@@ -181,17 +154,15 @@ open class DKCoreData
 
 }
 
-extension DKCoreDataSet
-{
+extension DKCoreDataSet {
     /// DKCoreDataSetのインスタンスを別スレッド(userInteractive)上で作成して、初期化されたDKCoreDataSetをコールバックメソッド（メインスレッド上）の引数として取得する静的メソッド
     /// - parameter requiredData: XCDataモデル名(ex. TestTest.modのピリオドの前の部分)/パッケージ名(ex. jp.example.test1)/ストア名(ex. test.sqlite、補足：拡張子はsqliteを指定すること)
     /// - parameter didConfiguration: 初期化されたDKCoreDataSetインスタンスを含むDKResultを返すコールバック関数。Mainスレッド上での処理を保証する。
-    fileprivate static func factoryInstance(requiredData lData:DKCoreData.RequiredData, didConfiguration:@escaping (DKResult<DKCoreDataSet, Error>)->())
-    {
+    fileprivate static func factoryInstance(requiredData lData: DKCoreData.RequiredData, didConfiguration:@escaping (DKResult<DKCoreDataSet, Error>) -> Void) {
         
-        let callDidConfigurationOnMain = { (result:DKResult<DKCoreDataSet, Error>) -> () in
+        let callDidConfigurationOnMain = { (result: DKResult<DKCoreDataSet, Error>) -> Void in
             
-            guard !Thread.isMainThread else{
+            guard !Thread.isMainThread else {
                 didConfiguration(result)
                 return
             }
@@ -201,19 +172,17 @@ extension DKCoreDataSet
             }
         }
         
-        
         DispatchQueue.global(qos: .userInteractive).async {
-            do{
-                let coreDataSet = try DKCoreDataSet(requiredData:lData)
+            do {
+                let coreDataSet = try DKCoreDataSet(requiredData: lData)
                 callDidConfigurationOnMain(DKResult.success(coreDataSet))
-            }catch{
+            } catch {
                 callDidConfigurationOnMain(DKResult.failure(error))
             }
         }
     }
     
-    open var description:String
-    {
+    open var description: String {
         var msg = "\t" + "DKCoreDataSet:\n"
         msg = msg + "\t " + "xcDataModelName\t:" + self.requiredData.xcDataModelName + "\n"
         msg = msg + "\t " + "packageName\t\t:" + self.requiredData.packageName + "\n"
@@ -222,14 +191,12 @@ extension DKCoreDataSet
     }
 }
 
-
-fileprivate class DKCoreDataSet
-{
+private class DKCoreDataSet {
     // MARK: - [変数・関数] -
-    public let context:NSManagedObjectContext
+    public let context: NSManagedObjectContext
     
     // MARK: [利用者が設定する定数]
-    internal let requiredData:DKCoreData.RequiredData
+    internal let requiredData: DKCoreData.RequiredData
     
     // MARK: [内部で利用する変数]
     private let applicationDocumentsDirectory: URL
@@ -240,10 +207,9 @@ fileprivate class DKCoreDataSet
     /// - parameter xcDataModelName: XCDataモデル名(ex. TestTest.modのピリオドの前の部分)
     /// - parameter packageName: パッケージ名(ex. jp.example.test1)
     /// - parameter storeDataName: ストア名(ex. test.sqlite、補足：拡張子はsqliteを指定すること)
-    internal init(requiredData:DKCoreData.RequiredData) throws
-    {
+    internal init(requiredData: DKCoreData.RequiredData) throws {
         // メンバ定数の初期化
-        do{
+        do {
             self.requiredData = requiredData
             
             self.applicationDocumentsDirectory = {
@@ -271,10 +237,9 @@ fileprivate class DKCoreDataSet
         try self.addPerssistentStored()
     }
     
-    private func checkDirectoryStatus() throws
-    {
+    private func checkDirectoryStatus() throws {
         let fileManager = FileManager.default
-        var failError: NSError? = nil
+        var failError: NSError?
         var shouldFail = false
         var failureReason = "There was an error creating or loading the application's saved data."
         
@@ -284,7 +249,7 @@ fileprivate class DKCoreDataSet
                 failureReason = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
                 shouldFail = true
             }
-        } catch  {
+        } catch {
             let nserror = error as NSError
             if nserror.code == NSFileReadNoSuchFileError {
                 do {
@@ -297,8 +262,7 @@ fileprivate class DKCoreDataSet
             }
         }
 
-        if shouldFail || (failError != nil)
-        {
+        if shouldFail || (failError != nil) {
             var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
             dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
@@ -310,14 +274,13 @@ fileprivate class DKCoreDataSet
         }
     }
     
-    private func addPerssistentStored() throws
-    {
-        var coordinator: NSPersistentStoreCoordinator? = nil
+    private func addPerssistentStored() throws {
+        var coordinator: NSPersistentStoreCoordinator?
         
         coordinator = self.context.persistentStoreCoordinator
         
         let url = self.applicationDocumentsDirectory.appendingPathComponent(self.requiredData.storeDataName)
-        let options = [NSMigratePersistentStoresAutomaticallyOption: true,NSInferMappingModelAutomaticallyOption: true]
+        let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
         try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
     }
 }

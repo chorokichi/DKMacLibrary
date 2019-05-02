@@ -2,7 +2,10 @@ use_frameworks!
 platform :osx, '10.12'
 target 'DKMacLibrary_Example' do
   pod 'DKMacLibrary', :path => '../'
-
+  pod 'SwiftLint'
+  
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
   target 'DKMacLibrary_Tests' do
     inherit! :search_paths
 

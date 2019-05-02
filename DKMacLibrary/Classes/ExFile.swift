@@ -7,12 +7,11 @@
 
 import Foundation
 
-public struct ExFile{
+public struct ExFile {
     // 呼び出し元のファイル名を返す
-    public static func getFileName(classFile: String = #file) -> String
-    {
+    public static func getFileName(classFile: String = #file) -> String {
         if let fileNameWithExtension = URL(string: String(classFile))?.lastPathComponent {
-            if case let fileName = fileNameWithExtension.components(separatedBy: "."), fileName.count > 0{
+            if case let fileName = fileNameWithExtension.components(separatedBy: "."), fileName.count > 0 {
                 return fileName[0]
             }
             return fileNameWithExtension
@@ -22,8 +21,7 @@ public struct ExFile{
     }
     
     // CoreDataのファイルなどを保存するフォルダーのパスを取得するメソッド
-    public static func getFolderPathHavingCoreDataFile() -> String
-    {
+    public static func getFolderPathHavingCoreDataFile() -> String {
         let supportDirectory = FileManager.SearchPathDirectory.applicationSupportDirectory
         let searchPathDomainMask = FileManager.SearchPathDomainMask.allDomainsMask
         let directories = NSSearchPathForDirectoriesInDomains(supportDirectory, searchPathDomainMask, true)

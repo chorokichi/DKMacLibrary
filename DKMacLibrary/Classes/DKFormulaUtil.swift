@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct DKFormulaUtil{
-    static func getRandomValue<T>(_ array:[T]) -> T{
+public struct DKFormulaUtil {
+    static func getRandomValue<T>(_ array: [T]) -> T {
         return array[Int(arc4random_uniform(UInt32(array.count)))]
     }
 }

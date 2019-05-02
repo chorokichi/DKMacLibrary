@@ -15,24 +15,22 @@ public protocol ExCalendarsProtocol {
     func getLastDay() -> RichDate<T>
     func getDays() -> [RichDate<T>]
     
-    func update(_ newDate:Date)
+    func update(_ newDate: Date)
 }
 /// 月カレンダー
 /// 使い方
 /// 1. 初期化でDateとカレンダーサイズ、週初めの曜日を指定。ここで設定したDateの日が強調されて、その月のカレンダーが表示される
 /// 2. updateで日付を更新すると月も変わる
-public class ExCalendars<T>
-{
-    private let numOfWeeks:Int
-    public let startWeek:WeekDay
+public class ExCalendars<T> {
+    private let numOfWeeks: Int
+    public let startWeek: WeekDay
     
     // 注目している日付
-    private var markedDate:RichDate<T>
-    private var days:[RichDate<T>] = []
+    private var markedDate: RichDate<T>
+    private var days: [RichDate<T>] = []
     
-    public init(markedDate:Date = Date(), numOfWeeks:Int, startWeek:WeekDay = .Sun) throws
-    {
-        let date:RichDate<T> = RichDate(from: markedDate)
+    public init(markedDate: Date = Date(), numOfWeeks: Int, startWeek: WeekDay = .Sun) throws {
+        let date: RichDate<T> = RichDate(from: markedDate)
         self.markedDate = date
         self.numOfWeeks = numOfWeeks
         guard numOfWeeks > 0 else {fatalError("週数は必ず0以上")}
@@ -40,13 +38,13 @@ public class ExCalendars<T>
         try self.construct()
     }
     
-    public func printCalendar(){
+    public func printCalendar() {
         ExLog.log("################################", format: .NoPostFix)
         var weekEnd = startWeek
         var log = ""
         
         // 曜日表示
-        (0...5).forEach { (a) in
+        (0...5).forEach { (_) in
             log = "\(log)\(weekEnd.getKey()) "
             weekEnd.next()
         }
@@ -55,24 +53,24 @@ public class ExCalendars<T>
         log.removeAll()
         
         // 日付表示
-        var months:[String] = []
-        days.forEach { (richDate:RichDate<T>) in
+        var months: [String] = []
+        days.forEach { (richDate: RichDate<T>) in
             let yearAndMonth = "\(richDate.year)/\(richDate.month)"
-            if !months.contains(yearAndMonth){
+            if !months.contains(yearAndMonth) {
                 months.append(yearAndMonth)
             }
             
             let dayStr = "\(richDate.day)"
-            let prefix:String
+            let prefix: String
             let remark = ((richDate == self.markedDate) ? "*" : " ")
-            if dayStr.count == 1{
+            if dayStr.count == 1 {
                 prefix = " \(remark)"
-            }else{
+            } else {
                 prefix = "\(remark)"
             }
             log = "\(log)\(prefix)\(dayStr) "
-            if richDate.weekDay == weekEnd{
-                months.forEach{ (subInfo) in
+            if richDate.weekDay == weekEnd {
+                months.forEach { (subInfo) in
                     log = "\(log)\(subInfo) "
                 }
                 ExLog.log(log, format: .NoPostFix)
@@ -84,8 +82,7 @@ public class ExCalendars<T>
         ExLog.log("################################", format: .NoPostFix)
     }
     
-    private func construct() throws
-    {
+    private func construct() throws {
         // カレンダーの最初の日付
         // April, 2019
         // Sun Mon Tue Wed Thu Fru Sat
@@ -97,17 +94,17 @@ public class ExCalendars<T>
         
         self.days = []
         
-        for i in 0 ..< numOfWeeks*7{
+        for i in 0 ..< numOfWeeks*7 {
             let date = ExDate.dateByAddingDay(value: i, date: firstDayOnCalendar.date)
-            let lDate:RichDate<T> = RichDate(from: date)
+            let lDate: RichDate<T> = RichDate(from: date)
             self.days.append(lDate)
         }
     }
     
-    private func getFirstDayOnCalendar(firstDayInWeek: RichDate<T>) -> RichDate<T>{ 
+    private func getFirstDayOnCalendar(firstDayInWeek: RichDate<T>) -> RichDate<T> { 
         var firstDayOnCalendar = firstDayInWeek
         var i = numOfWeeks
-        while(firstDayOnCalendar.month == self.markedDate.month && i > 1){
+        while firstDayOnCalendar.month == self.markedDate.month && i > 1 {
             i = i - 1
             firstDayOnCalendar = firstDayOnCalendar.createRichDate(added: -7)
         }
@@ -116,7 +113,7 @@ public class ExCalendars<T>
     }
 }
 
-extension ExCalendars: ExCalendarsProtocol{
+extension ExCalendars: ExCalendarsProtocol {
     public func getMarkedDay() -> RichDate<T> {
         return self.markedDate
     }
@@ -134,7 +131,7 @@ extension ExCalendars: ExCalendarsProtocol{
     }
     
     public func update(_ newDate: Date) {
-        let date:RichDate<T> = RichDate(from: newDate)
+        let date: RichDate<T> = RichDate(from: newDate)
         self.markedDate = date
         try? self.construct()
     }
