@@ -15,7 +15,7 @@ import Cocoa
 /// ```
 /// {子クラス名}.getContext
 /// ```
-/// で取得できるa `a` a
+/// で取得できる
 /// * 注意:
 /// 1. このクラスは直接利用せず、継承した子クラスを利用すること
 /// 2. 子クラスではdataをオーバーライドしてRequiredDataを設定すること
@@ -39,11 +39,13 @@ open class DKCoreData {
     /// DKCoreDataを継承したクラスでinitInstanceしたときに保存される配列
     /// ひとつのクラスでは一つしか作成されない。
     private static var _Instance: [DKCoreData] = []
+    /// DKCoreDataのインスタンスを取得するメソッド
     private static func getInstance() -> DKCoreData? {
         for instance in self._Instance where self == type(of: instance) {
+            // サブクラスで呼び出すとそのサブクラスと関係したインスタンスのみ取得される仕様
             return instance
         }
-        ExLog.error("Not found any instances related with \(self). The number of _Instance is \(_Instance.count)")
+        ExLog.log("Not found any instances related with \"\(self)\". The number of _Instance is \(_Instance.count)")
         return nil
     }
     
