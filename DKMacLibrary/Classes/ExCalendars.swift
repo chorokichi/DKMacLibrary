@@ -16,6 +16,7 @@ public protocol ExCalendarsProtocol {
     func getDays() -> [RichDate<T>]
     
     func update(_ newDate: Date)
+    func updateContent(_ index: Int, new: T)
 }
 /// 月カレンダー
 /// 使い方
@@ -38,7 +39,7 @@ public class ExCalendars<T> {
         try self.construct()
     }
     
-    public func printCalendar() {
+    public func printCalendarAsGrid() {
         ExLog.log("################################", format: .NoPostFix)
         var weekEnd = startWeek
         var log = ""
@@ -79,6 +80,19 @@ public class ExCalendars<T> {
             }
         }
         
+        ExLog.log("################################", format: .NoPostFix)
+    }
+    
+    /// 日付をリストでコンソールに出力するメソッド。RichDateの中身(data)のdebugDescriptionを出力する。
+    /// そのため、内容を自分でカスタマイズしたい場合はTクラスにCustomDebugStringConvertibleを継承させて、
+    /// debugDescriptionを自分で定義すること
+    public func printCalendarAsList() {
+        ExLog.log("################################", format: .NoPostFix)
+        days.forEach { (richDate: RichDate<T>) in
+            let header = String(format: "%04d/%02d/%02d(%@): ", richDate.year, richDate.month, richDate.day, richDate.weekDay.getKey())
+            let content = richDate.data.debugDescription 
+            ExLog.log("\(header)\(content)", format: .NoPostFix)
+        }
         ExLog.log("################################", format: .NoPostFix)
     }
     
@@ -134,5 +148,9 @@ extension ExCalendars: ExCalendarsProtocol {
         let date: RichDate<T> = RichDate(from: newDate)
         self.markedDate = date
         try? self.construct()
+    }
+    
+    public func updateContent(_ index: Int, new: T) {
+        self.days[index].data = new
     }
 }

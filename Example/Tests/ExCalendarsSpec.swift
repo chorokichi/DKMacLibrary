@@ -24,12 +24,12 @@ class ExCalendarsSpec: QuickSpec {
             return
         }
         it("First Day in this calendar") {
-            calendar.printCalendar()
+            calendar.printCalendarAsGrid()
             expect(calendar.getFirstDay(), file: classFile, line: lineNumber).to(self.richDate(first.0, first.1, first.2, first.3))
         }
 
         it("Last Day in this calendar") {
-            calendar.printCalendar()
+            calendar.printCalendarAsGrid()
             expect(calendar.getLastDay(), file: classFile, line: lineNumber).to(self.richDate(last.0, last.1, last.2, last.3))
         }
     }

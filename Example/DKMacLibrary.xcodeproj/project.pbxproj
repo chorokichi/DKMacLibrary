@@ -13,6 +13,7 @@
 		ED83F68020348A760038D96B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED83F67F20348A760038D96B /* Assets.xcassets */; };
 		ED83F68320348A760038D96B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED83F68120348A760038D96B /* Main.storyboard */; };
 		FA03B24120D4F13E00BB5115 /* ExLogSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */; };
+		FA32445A227F33F400F45A0D /* ExCalendarsLogSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA324459227F33F400F45A0D /* ExCalendarsLogSpec.swift */; };
 		FA74B7DE22758AFE008BBD2C /* RichDateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA74B7DD22758AFE008BBD2C /* RichDateSpec.swift */; };
 		FA74B7E122789CDF008BBD2C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FA74B7E022789CDF008BBD2C /* .swiftlint.yml */; };
 		FA7E1CF72274A0500044133E /* ExFileSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CF522749FFE0044133E /* ExFileSpec.swift */; };
@@ -65,6 +66,7 @@
 		ED83F68A20348A760038D96B /* DKMacLibrary_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DKMacLibrary_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED83F69020348A760038D96B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExLogSpec.swift; sourceTree = "<group>"; };
+		FA324459227F33F400F45A0D /* ExCalendarsLogSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCalendarsLogSpec.swift; sourceTree = "<group>"; };
 		FA74B7DD22758AFE008BBD2C /* RichDateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichDateSpec.swift; sourceTree = "<group>"; };
 		FA74B7E022789CDF008BBD2C /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		FA7E1CF522749FFE0044133E /* ExFileSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFileSpec.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				FA7E1CFC2274A8D20044133E /* ExTestSpec.swift */,
 				FA7E1D0522751D920044133E /* WeekDaySpec.swift */,
 				FA7E1CFE2274AAE00044133E /* ExCalendarsSpec.swift */,
+				FA324459227F33F400F45A0D /* ExCalendarsLogSpec.swift */,
 				FA74B7DD22758AFE008BBD2C /* RichDateSpec.swift */,
 				ED83F69020348A760038D96B /* Info.plist */,
 				ED83F67920348A760038D96B /* Products */,
@@ -452,6 +455,7 @@
 			files = (
 				FA03B24120D4F13E00BB5115 /* ExLogSpec.swift in Sources */,
 				FA7E1CFF2274AAE00044133E /* ExCalendarsSpec.swift in Sources */,
+				FA32445A227F33F400F45A0D /* ExCalendarsLogSpec.swift in Sources */,
 				FA74B7DE22758AFE008BBD2C /* RichDateSpec.swift in Sources */,
 				FA7E1CFD2274A8D20044133E /* ExTestSpec.swift in Sources */,
 				FA7E1D0622751D920044133E /* WeekDaySpec.swift in Sources */,
