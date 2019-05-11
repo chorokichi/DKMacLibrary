@@ -24,6 +24,13 @@ class RichDateSpec: QuickSpec {
                 expect(rDate1).to(self.richDate(2019, 4, 28, WeekDay.Sun, data: "SampleData"))
                 expect(rDate2).to(self.richDate(2019, 4, 28, WeekDay.Sun, data: 777))
             }
+            
+            it("replace") {
+                let date = ExDate.createDate(year: 2019, month: 4, day: 28)
+                var rDate0 = RichDate<String>(from: date)
+                rDate0.data = "test"
+                expect(rDate0).to(self.richDate(2019, 4, 28, WeekDay.Sun, data: "test"))
+            }
 
             let R = RichDate<String>.self
             context("RichDate<String>") {

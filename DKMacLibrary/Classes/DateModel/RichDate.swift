@@ -89,9 +89,14 @@ public struct RichDate<T>: CustomStringConvertible, Equatable {
     }
     
     public var description: String {
-        let msg = "\(year)/\(month)/\(day)(\(weekDay.getKey()))(\(String(describing: data))): \(date)"
+        let dataDescription: String
+        if let data = data{
+            dataDescription = "\(data)"
+        }else{
+            dataDescription = "nil"
+        }
+        let msg = "\(year)/\(month)/\(day)(\(weekDay.getKey()))(\(dataDescription)): \(date)"
         return msg
-        
     }
     
     public static func == (lhs: RichDate<T>, rhs: RichDate<T>) -> Bool {
