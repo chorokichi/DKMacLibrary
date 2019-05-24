@@ -90,9 +90,9 @@ public struct RichDate<T>: CustomStringConvertible, Equatable {
     
     public var description: String {
         let dataDescription: String
-        if let data = data{
+        if let data = data {
             dataDescription = "\(data)"
-        }else{
+        } else {
             dataDescription = "nil"
         }
         let msg = "\(year)/\(month)/\(day)(\(weekDay.getKey()))(\(dataDescription))"

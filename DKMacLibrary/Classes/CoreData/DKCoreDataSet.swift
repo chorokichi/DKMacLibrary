@@ -52,7 +52,7 @@ open class DKCoreData {
     public static func getCoreDataNum() -> Int {
         return self._Instance.count
     }
-
+    
     var context: NSManagedObjectContext?
     
     /// このメソッドは呼び出してはいけない！！！！
@@ -77,7 +77,7 @@ open class DKCoreData {
     
     @discardableResult
     public class func initInstance(completionHandler: @escaping (NSManagedObjectContext?) -> Void) -> DKCoreData.Status {
-        if let instance = self.getInstance() {   
+        if let instance = self.getInstance() {
             ExLog.log("すでにインスタンスあり -> 初期化不要")
             if let context = instance.context {
                 ExLog.log("\tすでにコンテキストもあり -> Initilized")
@@ -89,7 +89,7 @@ open class DKCoreData {
                 return .Initializing
             }
         } else {
-             ExLog.log("まだインスタンスなし -> 初期化実施")
+            ExLog.log("まだインスタンスなし -> 初期化実施")
             let instance = self.init(completionHandler: completionHandler)
             self._Instance.append(instance)
             return .Initializing
@@ -153,7 +153,27 @@ open class DKCoreData {
         // If we got here, it is time to quit.
         return .terminateNow
     }
-
+    
+    @available(OSX 10.11, *)
+    public static func deleteStore(completed: @escaping ()->()){
+        guard let instance = self.getInstance() else{
+            fatalError()
+        }
+        self._Instance.removeAll(where: {$0.context == instance.context})
+        DKCoreDataSet.factoryInstance(requiredData: instance.data) { (result: DKResult<DKCoreDataSet, Error>) in
+            switch result {
+            case .failure:
+                ExLog.log("Fail to get CoreDateSet instance.")
+                fatalError()
+            case .success(let set):
+                ExLog.log("Success to get CoreDateSet instance.")
+                set.deleteStore()
+            }
+            completed()
+        }
+        
+    }
+    
 }
 
 extension DKCoreDataSet {
@@ -260,10 +280,10 @@ private class DKCoreDataSet {
                     failError = nserror
                 }
             } else {
-               failError = nserror
+                failError = nserror
             }
         }
-
+        
         if shouldFail || (failError != nil) {
             var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
@@ -285,4 +305,16 @@ private class DKCoreDataSet {
         let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
         try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
     }
+    
+    @available(OSX 10.11, *)
+    public func deleteStore(){
+        let url = self.applicationDocumentsDirectory.appendingPathComponent(self.requiredData.storeDataName)
+        print("delete - \(url.absoluteString)")
+        do {
+            try self.context.persistentStoreCoordinator?.destroyPersistentStore(at: url, ofType: NSSQLiteStoreType, options: nil)
+        } catch {
+            print(error);
+        }
+    }
+    
 }
