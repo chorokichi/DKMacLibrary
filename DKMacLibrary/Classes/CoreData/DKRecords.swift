@@ -75,10 +75,10 @@ open class DKRecords: NSManagedObject {
     }
     
     /// typeを引数に設定しないと宣言時に明示的にDKRecordsのサブクラスを設定する必要があり、実行時エラーの原因になる。そのため、typeをメソッド呼び出し時に強制することでそのエラーを抑えることを狙っている。
-    public static func fetchRecords<T: DKRecords>(_ context: NSManagedObjectContext, sortDescriptor: NSSortDescriptor? = nil, predicate: NSPredicate? = nil, type: T.Type) throws -> [T] {
+    public static func fetchRecords<T: DKRecords>(_ context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor] = [], predicate: NSPredicate? = nil, type: T.Type) throws -> [T] {
         let fetchRequest: NSFetchRequest<T> = self.fetchRequest()
-        if let sortDescriptor = sortDescriptor {
-            fetchRequest.sortDescriptors = [sortDescriptor]
+        if sortDescriptors.count > 0 {
+            fetchRequest.sortDescriptors = sortDescriptors
         }
         
         if let predicate = predicate {

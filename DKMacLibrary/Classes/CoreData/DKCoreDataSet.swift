@@ -155,8 +155,8 @@ open class DKCoreData {
     }
     
     @available(OSX 10.11, *)
-    public static func deleteStore(completed: @escaping ()->()){
-        guard let instance = self.getInstance() else{
+    public static func deleteStore(completed: @escaping () -> Void) {
+        guard let instance = self.getInstance() else {
             fatalError()
         }
         self._Instance.removeAll(where: {$0.context == instance.context})
@@ -307,13 +307,13 @@ private class DKCoreDataSet {
     }
     
     @available(OSX 10.11, *)
-    public func deleteStore(){
+    public func deleteStore() {
         let url = self.applicationDocumentsDirectory.appendingPathComponent(self.requiredData.storeDataName)
         print("delete - \(url.absoluteString)")
         do {
             try self.context.persistentStoreCoordinator?.destroyPersistentStore(at: url, ofType: NSSQLiteStoreType, options: nil)
         } catch {
-            print(error);
+            print(error)
         }
     }
     
