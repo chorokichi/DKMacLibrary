@@ -17,6 +17,8 @@ public protocol ExCalendarsProtocol {
     
     func update(_ newDate: Date)
     func updateContent(_ index: Int, new: T)
+    func updateAllContents(by newList: [T])
+    func initAllContents(by new: T)
 }
 /// 月カレンダー
 /// 使い方
@@ -152,5 +154,18 @@ extension ExCalendars: ExCalendarsProtocol {
     
     public func updateContent(_ index: Int, new: T) {
         self.days[index].data = new
+    }
+    
+    public func updateAllContents(by newList: [T]) {
+        assert(self.days.count == newList.count)
+        for index in 0 ..< self.days.count {
+            self.days[index].data = newList[index]
+        }
+    }
+    
+    public func initAllContents(by new: T) {
+        for index in 0 ..< self.days.count {
+            self.days[index].data = new
+        }
     }
 }
