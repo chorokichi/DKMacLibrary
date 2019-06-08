@@ -213,6 +213,15 @@ open class ExLog {
         log(object, classFile: classFile, functionName: functionName, lineNumber: lineNumber, type: .Error, format: format)
     }
     
+    public static func fatalError(_ object: Any? = "No Log",
+                                  classFile: String = #file,
+                                  functionName: String = #function,
+                                  lineNumber: Int = #line,
+                                  format: ExLogFormat = .Normal) {
+        log(object, classFile: classFile, functionName: functionName, lineNumber: lineNumber, type: .Error, format: format)
+        fatalError(object)
+    }
+    
     public static func getHistory() -> String {
         return ExLog.instance.history
     }
