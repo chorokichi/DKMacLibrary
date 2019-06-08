@@ -219,7 +219,7 @@ open class ExLog {
                                   lineNumber: Int = #line,
                                   format: ExLogFormat = .Normal) {
         log(object, classFile: classFile, functionName: functionName, lineNumber: lineNumber, type: .Error, format: format)
-        fatalError(object)
+        assertionFailure()
     }
     
     public static func getHistory() -> String {
