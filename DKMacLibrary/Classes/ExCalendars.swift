@@ -14,6 +14,7 @@ public protocol ExCalendarsProtocol {
     func getFirstDay() -> RichDate<T>
     func getLastDay() -> RichDate<T>
     func getDays() -> [RichDate<T>]
+    func getDay(_ year: Int, _ month: Int, _ day: Int) -> RichDate<T>?
     
     func update(_ newDate: Date)
     func updateContent(_ index: Int, new: T)
@@ -144,6 +145,20 @@ extension ExCalendars: ExCalendarsProtocol {
     
     public func getDays() -> [RichDate<T>] {
         return days
+    }
+    
+    public func getDay(_ year: Int, _ month: Int, _ day: Int) -> RichDate<T>? {
+        let filteredDays = days.filter {($0.year == year && $0.month == month && $0.day == day)}
+        guard filteredDays.count < 2 else {
+            ExLog.fatalError("A date should be only one. \(filteredDays)")
+            return nil
+        }
+        
+        if filteredDays.count == 0 {
+            return nil
+        } else {
+            return filteredDays[0]
+        }
     }
     
     public func update(_ newDate: Date) {
