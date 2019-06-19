@@ -33,13 +33,13 @@ public class ExCalendars<T> {
     private var markedDate: RichDate<T>
     private var days: [RichDate<T>] = []
     
-    public init(markedDate: Date = Date(), numOfWeeks: Int, startWeek: WeekDay = .Sun) throws {
+    public init(markedDate: Date = Date(), numOfWeeks: Int, startWeek: WeekDay = .Sun) {
         let date: RichDate<T> = RichDate(from: markedDate)
         self.markedDate = date
         self.numOfWeeks = numOfWeeks
         guard numOfWeeks > 0 else {fatalError("週数は必ず0以上")}
         self.startWeek = startWeek
-        try self.construct()
+        self.construct()
     }
     
     public func printCalendarAsGrid() {
@@ -99,7 +99,7 @@ public class ExCalendars<T> {
         ExLog.log("################################", format: .NoPostFix)
     }
     
-    private func construct() throws {
+    private func construct() {
         // カレンダーの最初の日付
         // April, 2019
         // Sun Mon Tue Wed Thu Fru Sat
@@ -150,6 +150,7 @@ extension ExCalendars: ExCalendarsProtocol {
     public func getDay(_ year: Int, _ month: Int, _ day: Int) -> RichDate<T>? {
         let filteredDays = days.filter {($0.year == year && $0.month == month && $0.day == day)}
         guard filteredDays.count < 2 else {
+            fatalError()
             ExLog.fatalError("A date should be only one. \(filteredDays)")
             return nil
         }
@@ -164,7 +165,7 @@ extension ExCalendars: ExCalendarsProtocol {
     public func update(_ newDate: Date) {
         let date: RichDate<T> = RichDate(from: newDate)
         self.markedDate = date
-        try? self.construct()
+        self.construct()
     }
     
     public func updateContent(_ index: Int, new: T) {
