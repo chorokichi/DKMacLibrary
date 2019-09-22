@@ -39,7 +39,7 @@ class ExCalendarsSpec: QuickSpec {
             let date = ExDate.createDate(year: 2019, month: 4, day: 3)
 
             context("Start Week Is Sunday & size 7") {
-                let calendar = try? ExCalendars<String>(markedDate: date, numOfWeeks: 1, startWeek: WeekDay.Sun)
+                let calendar = ExCalendars<String>(markedDate: date, numOfWeeks: 1, startWeek: WeekDay.Sun)
                 // April, 2019
                 // Sun Mon Tue Wed Thu Fri Sat
                 //  31   1   2  ●3   4   5   6
@@ -49,7 +49,7 @@ class ExCalendarsSpec: QuickSpec {
             }
 
             context("Start Week Is Sunday & size 14") {
-                let calendar = try? ExCalendars<String>(markedDate: date, numOfWeeks: 2, startWeek: WeekDay.Sun)
+                let calendar = ExCalendars<String>(markedDate: date, numOfWeeks: 2, startWeek: WeekDay.Sun)
                 // April, 2019
                 // Sun Mon Tue Wed Thu Fri Sat
                 //  31   1   2  ●3   4   5   6
@@ -65,7 +65,7 @@ class ExCalendarsSpec: QuickSpec {
             let date = ExDate.createDate(year: 2019, month: 4, day: 3)
 
             context("Start Week Is Saturday & size 7") {
-                let calendar = try? ExCalendars<String>(markedDate: date, numOfWeeks: 3, startWeek: WeekDay.Sat)
+                let calendar = ExCalendars<String>(markedDate: date, numOfWeeks: 3, startWeek: WeekDay.Sat)
                 // April, 2019
                 // Sat Sun Mon Tue Wed Thu Fri
                 //  30  31   1   2  ●3   4   5
@@ -81,7 +81,7 @@ class ExCalendarsSpec: QuickSpec {
             let date = ExDate.createDate(year: 2019, month: 4, day: 17)
 
             context("Start Week Is Sunday & size 7") {
-                let calendar = try? ExCalendars<String>(markedDate: date, numOfWeeks: 1, startWeek: WeekDay.Sun)
+                let calendar = ExCalendars<String>(markedDate: date, numOfWeeks: 1, startWeek: WeekDay.Sun)
                 // April, 2019
                 // Sun Mon Tue Wed Thu Fru Sat
                 //  31   1   2   3   4   5   6
@@ -93,7 +93,7 @@ class ExCalendarsSpec: QuickSpec {
             }
 
             context("Start Week Is Sunday & size 14") {
-                let calendar = try? ExCalendars<String>(markedDate: date, numOfWeeks: 2, startWeek: WeekDay.Sun)
+                let calendar = ExCalendars<String>(markedDate: date, numOfWeeks: 2, startWeek: WeekDay.Sun)
                 // April, 2019
                 // Sun Mon Tue Wed Thu Fru Sat
                 //   7   8   9  10  11  12  13
@@ -104,7 +104,7 @@ class ExCalendarsSpec: QuickSpec {
             }
 
             context("Start Week Is Sunday & size 21") {
-                let calendar = try? ExCalendars<String>(markedDate: date, numOfWeeks: 3, startWeek: WeekDay.Sun)
+                let calendar = ExCalendars<String>(markedDate: date, numOfWeeks: 3, startWeek: WeekDay.Sun)
                 // April, 2019
                 // Sun Mon Tue Wed Thu Fru Sat
                 //  31   1   2   3   4   5   6
@@ -116,7 +116,7 @@ class ExCalendarsSpec: QuickSpec {
             }
 
             context("Start Week Is Sunday & size 28") {
-                let calendar = try? ExCalendars<String>(markedDate: date, numOfWeeks: 4, startWeek: WeekDay.Sun)
+                let calendar = ExCalendars<String>(markedDate: date, numOfWeeks: 4, startWeek: WeekDay.Sun)
                 // April, 2019
                 // Sun Mon Tue Wed Thu Fru Sat
                 //  31   1   2   3   4   5   6
@@ -133,7 +133,7 @@ class ExCalendarsSpec: QuickSpec {
             let date = ExDate.createDate(year: 2019, month: 1, day: 1)
 
             context("Start Week Is Saturday & size 7") {
-                let calendar = try? ExCalendars<String>(markedDate: date, numOfWeeks: 3, startWeek: WeekDay.Sat)
+                let calendar = ExCalendars<String>(markedDate: date, numOfWeeks: 3, startWeek: WeekDay.Sat)
                 // January, 2019
                 // Sat Sun Mon Tue Wed Thu Fri
                 //  29  30  31  ●1   2   3   4

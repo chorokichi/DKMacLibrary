@@ -150,7 +150,6 @@ extension ExCalendars: ExCalendarsProtocol {
     public func getDay(_ year: Int, _ month: Int, _ day: Int) -> RichDate<T>? {
         let filteredDays = days.filter {($0.year == year && $0.month == month && $0.day == day)}
         guard filteredDays.count < 2 else {
-            fatalError()
             ExLog.fatalError("A date should be only one. \(filteredDays)")
             return nil
         }
