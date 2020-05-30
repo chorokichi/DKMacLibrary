@@ -36,7 +36,6 @@ public class DKDialogUtil {
         alert.addButton(withTitle: firstButton)
         alert.alertStyle = .informational
         
-        
         let result = alert.runModal()
         if result == NSApplication.ModalResponse.alertFirstButtonReturn {
             ExLog.log("OK")
