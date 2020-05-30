@@ -11,4 +11,5 @@ import Foundation
 enum ViewControllerType {
     case CoreData
     case ExLog
+    case Dialog
 }

@@ -24,6 +24,17 @@ pod 'DKMacLibrary'
 
 Jirokichi, kdy.developer@gmail.com
 
+
+## 提供機能
+
+### 1. ExLog
+
+
 ## License
 
 DKMacLibrary is available under the MIT license. See the LICENSE file for more info.
+
+## History
+
+# 0.1.11
+- DKDialogUtilの機能を拡充

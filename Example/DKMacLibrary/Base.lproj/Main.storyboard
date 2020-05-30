@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14490.12"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="16002"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
@@ -765,14 +765,13 @@
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="m8M-Tb-DkE" id="unb-24-NJf">
                                             <rect key="frame" x="0.0" y="0.0" width="198" height="298"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="195" minWidth="16" maxWidth="1000" id="m8M-Tb-DkE">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -917,7 +916,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LoI-S6-13r">
-                                <rect key="frame" x="100" y="110" width="250" height="22"/>
+                                <rect key="frame" x="100" y="111" width="250" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="itS-kq-fSD">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -925,10 +924,10 @@
                                 </textFieldCell>
                             </textField>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wG8-fd-jLu">
-                                <rect key="frame" x="313" y="83" width="37" height="19"/>
+                                <rect key="frame" x="313" y="84" width="37" height="19"/>
                                 <buttonCell key="cell" type="roundRect" title="Add" bezelStyle="roundedRect" alignment="center" borderStyle="border" inset="2" id="kVs-KH-RvL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="label" size="12"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="onAdd:" target="9US-Ep-UFc" id="dek-fk-sLy"/>
@@ -938,14 +937,14 @@
                                 <rect key="frame" x="405" y="271" width="35" height="19"/>
                                 <buttonCell key="cell" type="roundRect" title="List" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="83S-iU-yCE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="label" size="12"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="onList:" target="9US-Ep-UFc" id="xrt-Rf-VQE"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F52-0r-Yde">
-                                <rect key="frame" x="98" y="142" width="59" height="17"/>
+                                <rect key="frame" x="98" y="142" width="59" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Message" id="ea7-Zl-ZdI">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -975,6 +974,35 @@
             </objects>
             <point key="canvasLocation" x="1170" y="1593"/>
         </scene>
+        <!--Dialog View Controller-->
+        <scene sceneID="72u-Ya-q1T">
+            <objects>
+                <viewController storyboardIdentifier="DialogViewController" id="ECF-3x-f80" customClass="DialogViewController" customModule="DKMacLibrary_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="gKl-Uo-bkx">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yvb-SA-orV">
+                                <rect key="frame" x="168" y="262" width="115" height="32"/>
+                                <buttonCell key="cell" type="push" title="Open Dialog" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ofi-5a-j0h">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onOpenDialog:" target="ECF-3x-f80" id="bTf-Iv-hRk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Yvb-SA-orV" firstAttribute="top" secondItem="gKl-Uo-bkx" secondAttribute="top" constant="10" id="2wa-y5-bSK"/>
+                            <constraint firstItem="Yvb-SA-orV" firstAttribute="centerX" secondItem="gKl-Uo-bkx" secondAttribute="centerX" id="9Xo-gV-RCH"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="ohL-fS-ycS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1637" y="1593"/>
+        </scene>
         <!--Ex Log View Controller-->
         <scene sceneID="ZfE-Jm-Uid">
             <objects>
@@ -984,7 +1012,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XRR-6W-w0s">
-                                <rect key="frame" x="207" y="273" width="37" height="17"/>
+                                <rect key="frame" x="207" y="274" width="37" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="OZU-f1-yWR">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

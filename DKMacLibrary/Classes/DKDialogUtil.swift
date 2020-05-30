@@ -12,7 +12,6 @@ import Cocoa
 public class DKDialogUtil {
     
     public static func startDialog(_ title: String, message: String? = nil, onClickOKButton:() -> Void) {
-        // Swiftの場合
         let alert = NSAlert()
         alert.messageText = title
         if let message = message {
@@ -27,15 +26,18 @@ public class DKDialogUtil {
         }
     }
     
-    /// This method has an issue(http://openradar.appspot.com/28700495).
-    /// - parameter <#型#>: <#説明#>
-    /// - returns: <#返り値の説明#>
-    public static func alertDialog(_ title: String, onClickOKButton:() -> Void = {}) {
-        // Swiftの場合
+    /// 警告メッセージ用のダイアログを表示する。警告用のためボタンはひとつのみ。
+    /// NOTE: ボタンが押されるまで呼び出し元は次の操作にうつれない(NSAlertの仕様)。
+    /// - parameter onClickOKButton: ボタン押下後に呼び出されるコールバック関数
+    /// - parameter onClickOKButton: ボタン押下後に呼び出されるコールバック関数
+    public static func alertDialog(_ title: String, firstButton: String = "OK", onClickOKButton:() -> Void = {}) {
         let alert = NSAlert()
         alert.messageText = title
-        alert.addButton(withTitle: "OK")
-        let result = alert.runModal()// Apple Issue: http://openradar.appspot.com/28700495
+        alert.addButton(withTitle: firstButton)
+        alert.alertStyle = .informational
+        
+        
+        let result = alert.runModal()
         if result == NSApplication.ModalResponse.alertFirstButtonReturn {
             ExLog.log("OK")
             onClickOKButton()

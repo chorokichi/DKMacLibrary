@@ -14,6 +14,7 @@
 		ED83F68320348A760038D96B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED83F68120348A760038D96B /* Main.storyboard */; };
 		FA03B24120D4F13E00BB5115 /* ExLogSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */; };
 		FA32445A227F33F400F45A0D /* ExCalendarsLogSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA324459227F33F400F45A0D /* ExCalendarsLogSpec.swift */; };
+		FA4B61752482503800F0F3AF /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B61742482503800F0F3AF /* DialogViewController.swift */; };
 		FA74B7DE22758AFE008BBD2C /* RichDateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA74B7DD22758AFE008BBD2C /* RichDateSpec.swift */; };
 		FA74B7E122789CDF008BBD2C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FA74B7E022789CDF008BBD2C /* .swiftlint.yml */; };
 		FA7E1CF72274A0500044133E /* ExFileSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E1CF522749FFE0044133E /* ExFileSpec.swift */; };
@@ -67,6 +68,7 @@
 		ED83F69020348A760038D96B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA03B23F20D4F0F400BB5115 /* ExLogSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExLogSpec.swift; sourceTree = "<group>"; };
 		FA324459227F33F400F45A0D /* ExCalendarsLogSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCalendarsLogSpec.swift; sourceTree = "<group>"; };
+		FA4B61742482503800F0F3AF /* DialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DialogViewController.swift; path = DKMacLibrary/Detail/DialogViewController.swift; sourceTree = SOURCE_ROOT; };
 		FA74B7DD22758AFE008BBD2C /* RichDateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichDateSpec.swift; sourceTree = "<group>"; };
 		FA74B7E022789CDF008BBD2C /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		FA7E1CF522749FFE0044133E /* ExFileSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFileSpec.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				FAD6BC2E227A88E4008E563F /* Model */,
 				FAD6BC20227A4709008E563F /* CoreDataViewController.swift */,
 				FAD6BC25227A63DF008E563F /* ExLogViewController.swift */,
+				FA4B61742482503800F0F3AF /* DialogViewController.swift */,
 				FAD6BC2C227A887B008E563F /* CoreDataA.swift */,
 			);
 			path = Detail;
@@ -435,6 +438,7 @@
 				FAD6BC152279E2FA008E563F /* TestCategory.swift in Sources */,
 				FAD6BC28227A6923008E563F /* ViewControlletType.swift in Sources */,
 				FAD6BC2B227A8819008E563F /* Model.xcdatamodeld in Sources */,
+				FA4B61752482503800F0F3AF /* DialogViewController.swift in Sources */,
 				FAD6BC2D227A887B008E563F /* CoreDataA.swift in Sources */,
 				FAD6BC132279E021008E563F /* TypeListViewModel.swift in Sources */,
 				FAD6BC21227A4709008E563F /* CoreDataViewController.swift in Sources */,

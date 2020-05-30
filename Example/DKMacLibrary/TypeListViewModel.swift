@@ -47,7 +47,8 @@ class TypeListViewModel {
     private static func createTestCategories() -> [TestCategory]{
         return [
             TestCategory(name: "Check ExLog", items: [TestItem(name: "Normal Log", type: .ExLog)]),
-            TestCategory(name: "Check DKCoreDate", items: [TestItem(name: "Type1", type: .CoreData)])
+            TestCategory(name: "Check DKCoreDate", items: [TestItem(name: "Type1", type: .CoreData)]),
+            TestCategory(name: String(describing: DKDialogUtil.self), items: [TestItem(name: "Dialog", type: .Dialog)])
         ]
     }
 }

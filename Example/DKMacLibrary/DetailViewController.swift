@@ -69,6 +69,13 @@ class DetailViewController: NSViewController {
         }
         return vc
     }
+    
+    private func createDialogViewController() -> DialogViewController{
+        guard let vc = self.storyboard?.instantiateController(withIdentifier: "DialogViewController") as? DialogViewController else{
+            fatalError()
+        }
+        return vc
+    }
 }
 
 extension DetailViewController: UIDetailViewAction{
@@ -78,6 +85,8 @@ extension DetailViewController: UIDetailViewAction{
             self.swapContentController(content: self.createCoreDataViewController(), container: self.containerView)
         case .ExLog:
             self.swapContentController(content: self.createExLogViewController(), container: self.containerView)
+        case .Dialog:
+            self.swapContentController(content: self.createDialogViewController(), container: self.containerView)
         }
         
     }
