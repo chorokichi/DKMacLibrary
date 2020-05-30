@@ -1,14 +1,14 @@
 PODS:
-  - DKMacLibrary (0.1.3)
+  - DKMacLibrary (0.1.10)
   - Nimble (7.3.4)
   - Quick (1.3.4)
-  - RxCocoa (5.0.0):
+  - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxRelay (5.0.0):
+  - RxRelay (5.1.1):
     - RxSwift (~> 5)
-  - RxSwift (5.0.0)
-  - SwiftLint (0.32.0)
+  - RxSwift (5.1.1)
+  - SwiftLint (0.39.2)
 
 DEPENDENCIES:
   - DKMacLibrary (from `../`)
@@ -19,7 +19,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Nimble
     - Quick
     - RxCocoa
@@ -32,14 +32,14 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DKMacLibrary: 637e08a97334d7fbb79bcea7b05b5cfed2e67e13
+  DKMacLibrary: a06c9f9845ff3714bed63243455f7618f2808b6a
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Quick: f4f7f063c524394c73ed93ac70983c609805d481
-  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
-  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
 PODFILE CHECKSUM: 538058d0f24c5b8cf0cad2fba556ab9ba7341b4c
 
-COCOAPODS: 1.7.0.beta.3
+COCOAPODS: 1.9.1

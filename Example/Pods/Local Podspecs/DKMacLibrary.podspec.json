@@ -1,6 +1,6 @@
 {
   "name": "DKMacLibrary",
-  "version": "0.1.3",
+  "version": "0.1.10",
   "summary": "MacOS用の自作ライブラリー。",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/chorokichi/DKMacLibrary",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/chorokichi/DKMacLibrary.git",
-    "tag": "0.1.3"
+    "tag": "0.1.10"
   },
   "platforms": {
     "osx": "10.10"
